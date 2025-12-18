@@ -1,0 +1,272 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 
+  NAKSHATRA DASHA - Premium Indian Astrology Platform
+  Design System: Cosmic Vedic Aesthetics
+*/
+
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap');
+
+@layer base {
+  :root {
+    /* Cosmic Color Palette - HSL Values */
+    --background: 230 45% 6%;
+    --foreground: 40 25% 90%;
+    
+    --card: 230 40% 10%;
+    --card-foreground: 40 25% 90%;
+    
+    --popover: 230 40% 8%;
+    --popover-foreground: 40 25% 90%;
+    
+    /* Primary: Antique Gold */
+    --primary: 40 75% 50%;
+    --primary-foreground: 230 45% 6%;
+    
+    /* Secondary: Cosmic Blue */
+    --secondary: 230 50% 18%;
+    --secondary-foreground: 40 25% 90%;
+    
+    /* Muted: Deep Space */
+    --muted: 230 35% 15%;
+    --muted-foreground: 230 20% 60%;
+    
+    /* Accent: Saffron */
+    --accent: 28 85% 55%;
+    --accent-foreground: 230 45% 6%;
+    
+    /* Copper Highlights */
+    --copper: 20 65% 45%;
+    --copper-foreground: 40 25% 95%;
+    
+    /* Parchment/Sand */
+    --parchment: 40 30% 88%;
+    --parchment-foreground: 230 45% 10%;
+    
+    /* Cosmic Indigo */
+    --cosmic: 230 55% 12%;
+    --cosmic-light: 230 45% 25%;
+    --cosmic-glow: 230 70% 60%;
+    
+    --destructive: 0 72% 50%;
+    --destructive-foreground: 40 25% 95%;
+    
+    --border: 230 30% 20%;
+    --input: 230 30% 18%;
+    --ring: 40 75% 50%;
+    
+    --radius: 0.5rem;
+    
+    /* Gradients */
+    --gradient-gold: linear-gradient(135deg, hsl(40, 75%, 50%), hsl(28, 85%, 55%), hsl(20, 65%, 45%));
+    --gradient-cosmic: linear-gradient(180deg, hsl(230, 45%, 6%), hsl(230, 55%, 12%), hsl(230, 45%, 8%));
+    --gradient-glow: radial-gradient(circle, hsl(40, 75%, 50%, 0.15) 0%, transparent 70%);
+    
+    /* Shadows */
+    --shadow-gold: 0 0 30px hsl(40, 75%, 50%, 0.3);
+    --shadow-cosmic: 0 20px 60px hsl(230, 45%, 3%, 0.8);
+    
+    /* Sidebar */
+    --sidebar-background: 230 45% 8%;
+    --sidebar-foreground: 40 25% 90%;
+    --sidebar-primary: 40 75% 50%;
+    --sidebar-primary-foreground: 230 45% 6%;
+    --sidebar-accent: 230 50% 18%;
+    --sidebar-accent-foreground: 40 25% 90%;
+    --sidebar-border: 230 30% 20%;
+    --sidebar-ring: 40 75% 50%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    @apply bg-background text-foreground font-body antialiased;
+    background-image: 
+      radial-gradient(ellipse at 20% 30%, hsl(230, 55%, 15%, 0.4) 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 70%, hsl(230, 60%, 12%, 0.3) 0%, transparent 50%),
+      var(--gradient-cosmic);
+    background-attachment: fixed;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading;
+  }
+}
+
+@layer components {
+  /* Sacred Geometry Background Pattern */
+  .mandala-pattern {
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23c9a227' fill-opacity='0.03'%3E%3Cpath d='M30 30m-28 0a28 28 0 1 0 56 0a28 28 0 1 0-56 0M30 30m-20 0a20 20 0 1 0 40 0a20 20 0 1 0-40 0M30 30m-12 0a12 12 0 1 0 24 0a12 12 0 1 0-24 0M30 30m-4 0a4 4 0 1 0 8 0a4 4 0 1 0-8 0'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  }
+  
+  /* Star Field Animation */
+  .star-field {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+  }
+  
+  .star {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: hsl(40, 60%, 80%);
+    border-radius: 50%;
+    animation: twinkle var(--duration, 3s) ease-in-out infinite;
+    opacity: var(--opacity, 0.6);
+  }
+  
+  /* Golden Text Gradient */
+  .text-golden {
+    background: linear-gradient(135deg, hsl(40, 80%, 60%), hsl(28, 90%, 60%), hsl(40, 75%, 50%));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  /* Cosmic Card */
+  .cosmic-card {
+    @apply relative overflow-hidden rounded-lg border border-border bg-card/50 backdrop-blur-sm;
+    background: linear-gradient(135deg, hsl(230, 40%, 10%, 0.9), hsl(230, 45%, 8%, 0.95));
+  }
+  
+  .cosmic-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--gradient-glow);
+    opacity: 0;
+    transition: opacity 0.5s ease;
+  }
+  
+  .cosmic-card:hover::before {
+    opacity: 1;
+  }
+  
+  /* Sacred Border */
+  .sacred-border {
+    position: relative;
+  }
+  
+  .sacred-border::before {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    background: linear-gradient(135deg, hsl(40, 75%, 50%, 0.5), transparent 50%, hsl(40, 75%, 50%, 0.5));
+    border-radius: inherit;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+  
+  .sacred-border:hover::before {
+    opacity: 1;
+  }
+  
+  /* Zodiac Glow Effect */
+  .zodiac-glow {
+    filter: drop-shadow(0 0 8px hsl(40, 75%, 50%, 0.4));
+    transition: filter 0.3s ease;
+  }
+  
+  .zodiac-glow:hover {
+    filter: drop-shadow(0 0 20px hsl(40, 75%, 50%, 0.6));
+  }
+}
+
+@layer utilities {
+  /* Noise Texture Overlay */
+  .noise-overlay {
+    position: relative;
+  }
+  
+  .noise-overlay::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%' height='100%' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none;
+    opacity: 0.4;
+  }
+}
+
+/* Keyframe Animations */
+@keyframes twinkle {
+  0%, 100% {
+    opacity: var(--opacity, 0.6);
+    transform: scale(1);
+  }
+  50% {
+    opacity: calc(var(--opacity, 0.6) * 0.3);
+    transform: scale(0.8);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes rotate-slow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 20px hsl(40, 75%, 50%, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 40px hsl(40, 75%, 50%, 0.5);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scale-in {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
