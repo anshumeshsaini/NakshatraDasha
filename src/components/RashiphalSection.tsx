@@ -1,27 +1,43 @@
 import { useState } from 'react';
 
+/* -------------------- SIGN IMAGES -------------------- */
+import aries from '@/assets/sign/aries-removebg-preview.png';
+import taurus from '@/assets/sign/traus.png';
+import gemini from '@/assets/sign/gemini.png';
+import cancer from '@/assets/sign/cancer.png';
+import leo from '@/assets/sign/leo.png';
+import virgo from '@/assets/sign/virgo.png';
+import libra from '@/assets/sign/libra.png';
+import scorpio from '@/assets/sign/scopoio.png';
+import sagittarius from '@/assets/sign/sagi.png';
+import capricorn from '@/assets/sign/capricon.png';
+import aquarius from '@/assets/sign/aqua.png';
+import pisces from '@/assets/sign/picses.png';
+
+/* -------------------- DATA -------------------- */
 const zodiacSigns = [
-  { name: 'Aries', sanskrit: 'मेष', symbol: '♈', element: 'Fire', ruling: 'Mars' },
-  { name: 'Taurus', sanskrit: 'वृषभ', symbol: '♉', element: 'Earth', ruling: 'Venus' },
-  { name: 'Gemini', sanskrit: 'मिथुन', symbol: '♊', element: 'Air', ruling: 'Mercury' },
-  { name: 'Cancer', sanskrit: 'कर्क', symbol: '♋', element: 'Water', ruling: 'Moon' },
-  { name: 'Leo', sanskrit: 'सिंह', symbol: '♌', element: 'Fire', ruling: 'Sun' },
-  { name: 'Virgo', sanskrit: 'कन्या', symbol: '♍', element: 'Earth', ruling: 'Mercury' },
-  { name: 'Libra', sanskrit: 'तुला', symbol: '♎', element: 'Air', ruling: 'Venus' },
-  { name: 'Scorpio', sanskrit: 'वृश्चिक', symbol: '♏', element: 'Water', ruling: 'Mars' },
-  { name: 'Sagittarius', sanskrit: 'धनु', symbol: '♐', element: 'Fire', ruling: 'Jupiter' },
-  { name: 'Capricorn', sanskrit: 'मकर', symbol: '♑', element: 'Earth', ruling: 'Saturn' },
-  { name: 'Aquarius', sanskrit: 'कुंभ', symbol: '♒', element: 'Air', ruling: 'Saturn' },
-  { name: 'Pisces', sanskrit: 'मीन', symbol: '♓', element: 'Water', ruling: 'Jupiter' },
+  { name: 'Aries', sanskrit: 'मेष', image: aries, element: 'Fire', ruling: 'Mars' },
+  { name: 'Taurus', sanskrit: 'वृषभ', image: taurus, element: 'Earth', ruling: 'Venus' },
+  { name: 'Gemini', sanskrit: 'मिथुन', image: gemini, element: 'Air', ruling: 'Mercury' },
+  { name: 'Cancer', sanskrit: 'कर्क', image: cancer, element: 'Water', ruling: 'Moon' },
+  { name: 'Leo', sanskrit: 'सिंह', image: leo, element: 'Fire', ruling: 'Sun' },
+  { name: 'Virgo', sanskrit: 'कन्या', image: virgo, element: 'Earth', ruling: 'Mercury' },
+  { name: 'Libra', sanskrit: 'तुला', image: libra, element: 'Air', ruling: 'Venus' },
+  { name: 'Scorpio', sanskrit: 'वृश्चिक', image: scorpio, element: 'Water', ruling: 'Mars' },
+  { name: 'Sagittarius', sanskrit: 'धनु', image: sagittarius, element: 'Fire', ruling: 'Jupiter' },
+  { name: 'Capricorn', sanskrit: 'मकर', image: capricorn, element: 'Earth', ruling: 'Saturn' },
+  { name: 'Aquarius', sanskrit: 'कुंभ', image: aquarius, element: 'Air', ruling: 'Saturn' },
+  { name: 'Pisces', sanskrit: 'मीन', image: pisces, element: 'Water', ruling: 'Jupiter' },
 ];
 
 const predictions = [
-  "Today brings favorable opportunities for new beginnings. The planetary alignment supports decisive action.",
-  "Focus on relationships and communication. Venus influences bring harmony to partnerships.",
-  "A day for introspection and spiritual growth. The Moon's transit deepens your intuition.",
-  "Professional endeavors are highlighted. Saturn's aspect rewards disciplined efforts.",
+  'Today brings favorable opportunities for new beginnings. The planetary alignment supports decisive action.',
+  'Focus on relationships and communication. Venus influences bring harmony to partnerships.',
+  'A day for introspection and spiritual growth. The Moon’s transit deepens your intuition.',
+  'Professional endeavors are highlighted. Saturn rewards disciplined efforts.',
 ];
 
+/* -------------------- COMPONENT -------------------- */
 export const RashiphalSection = () => {
   const [selectedSign, setSelectedSign] = useState<number | null>(null);
 
@@ -29,9 +45,9 @@ export const RashiphalSection = () => {
     <section id="rashiphal" className="relative py-24 md:py-32">
       <div className="container px-4">
 
-        {/* Section Header */}
+        {/* Header */}
         <div className="text-center mb-16 md:mb-20">
-          <span className="inline-block px-4 py-1 mb-4 text-sm text-primary/80 font-body tracking-widest uppercase border border-primary/30 rounded-none">
+          <span className="inline-block px-4 py-1 mb-4 text-sm border border-primary/30 rounded-none">
             दैनिक राशिफल
           </span>
 
@@ -39,8 +55,8 @@ export const RashiphalSection = () => {
             Daily <span className="text-golden">Rashiphal</span>
           </h2>
 
-          <p className="max-w-2xl mx-auto text-muted-foreground font-body">
-            Select your zodiac sign to receive today's celestial guidance from the stars
+          <p className="max-w-2xl mx-auto text-muted-foreground">
+            Select your zodiac sign to receive today’s celestial guidance
           </p>
         </div>
 
@@ -49,18 +65,23 @@ export const RashiphalSection = () => {
           {zodiacSigns.map((sign, index) => (
             <button
               key={sign.name}
-              onClick={() => setSelectedSign(selectedSign === index ? null : index)}
+              onClick={() =>
+                setSelectedSign(selectedSign === index ? null : index)
+              }
               className={`cosmic-card sacred-border rounded-none p-4 md:p-6 text-center transition-all duration-500 group ${
                 selectedSign === index ? 'ring-2 ring-primary scale-105' : ''
               }`}
             >
-              <span className="block text-3xl md:text-4xl mb-2 zodiac-glow transition-all duration-300 group-hover:scale-110">
-                {sign.symbol}
-              </span>
-              <span className="block font-heading text-sm md:text-base text-foreground/90 mb-1">
+              <img
+                src={sign.image}
+                alt={sign.name}
+                className="w-12 h-12 md:w-14 md:h-14 mx-auto mb-2 object-contain transition-transform duration-300 group-hover:scale-110"
+              />
+
+              <span className="block font-heading text-sm md:text-base mb-1">
                 {sign.name}
               </span>
-              <span className="block text-xs text-primary/70 font-body">
+              <span className="block text-xs text-primary/70">
                 {sign.sanskrit}
               </span>
             </button>
@@ -73,21 +94,24 @@ export const RashiphalSection = () => {
             <div className="cosmic-card rounded-none p-8 md:p-10 text-center">
 
               <div className="flex items-center justify-center gap-4 mb-6">
-                <span className="text-5xl md:text-6xl zodiac-glow">
-                  {zodiacSigns[selectedSign].symbol}
-                </span>
+                <img
+                  src={zodiacSigns[selectedSign].image}
+                  className="w-16 h-16 md:w-20 md:h-20 object-contain"
+                />
+
                 <div className="text-left">
-                  <h3 className="font-heading text-2xl text-foreground">
+                  <h3 className="font-heading text-2xl">
                     {zodiacSigns[selectedSign].name}
                   </h3>
-                  <p className="text-primary/80 font-body">
-                    {zodiacSigns[selectedSign].sanskrit} • {zodiacSigns[selectedSign].element}
+                  <p className="text-primary/80">
+                    {zodiacSigns[selectedSign].sanskrit} •{' '}
+                    {zodiacSigns[selectedSign].element}
                   </p>
                 </div>
               </div>
 
               <div className="border-t border-border/50 pt-6">
-                <p className="text-lg text-foreground/80 font-body leading-relaxed mb-6">
+                <p className="text-lg leading-relaxed mb-6">
                   {predictions[selectedSign % predictions.length]}
                 </p>
 
